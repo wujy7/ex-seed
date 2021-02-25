@@ -1,9 +1,7 @@
 package com.ex.seed.filter;
 
-import com.ex.seed.biz.UserInfoService;
 import com.ex.seed.bo.UserInfoBo;
 import com.ex.seed.constant.SsoConstant;
-import com.ex.seed.utils.SpringUtil;
 import com.ex.seed.utils.UserUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URLEncoder;
 
@@ -63,7 +60,6 @@ public class SsoLoginFilter implements Filter {
             response.sendRedirect(redirectUrl);
         }
         filterChain.doFilter(servletRequest, servletResponse);
-
     }
 
     @Override
