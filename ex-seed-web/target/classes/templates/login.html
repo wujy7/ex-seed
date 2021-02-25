@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="../static/log/index.css">
+</head>
+
+<body>
+<script src=""></script>
+<!-- <header class="header">
+    <div class="header-title">
+      <img src="./assets/img/logo.png" class="header-logo" alt="">
+      统一认证中心
+    </div>
+  </header> -->
+<main class="main">
+    <div class="main-left">
+        <img class="left-img" src="../static/log/img/login_image.png" alt="">
+    </div>
+    <div class="title-img">
+        <img src="../static/log/img/login_title.png" alt="">
+    </div>
+    <div class="main-right">
+        <p class="main-right-title">欢迎你，请登录进入系统</p>
+        <form action="/sso/login" onsubmit="return submitTest()" method="post">
+            <!-- <form action="./test.html" method="post"> -->
+            <input type="hidden" name="service" th:value="${service}">
+            <div class="main-input-group">
+                <img src="../static/log/img/user-icon.png" alt="">
+                <!-- onblur="onBlurAccount()" -->
+                <input type="text" class="main-input" id="userId" value="" name="userId" onblur="onBlurAccount()"
+                       placeholder="请输入用户名">
+                <p id="remind-account"></p>
+            </div>
+            <div class="main-input-group">
+                <img src="../static/log/img/lock-icon.png" alt="">
+                <!-- onblur="onBlurPass()" -->
+                <input type="password" class="main-input" id="passWord" value="" name="passWord" onblur="onBlurPass()"
+                       placeholder="请输入密码">
+                <p id="remind-password"></p>
+            </div>
+            <input type="submit" class="main-btn" id="login" value="登录"></input>
+        </form>
+    </div>
+</main>
+<!-- <footer>
+  <img src="./assets/img/footer-bg.png" class="footer-bg" alt="">
+  <p>@2018-2019 版权所有 浙江地质大数据应用中心有限公司 浙ICP备19034013号</p>
+</footer> -->
+<script>
+
+    function submitTest() {
+        var userName = document.getElementById('userId').value
+        window.addEventListener("beforeunload", () => {
+            sessionStorage.setItem("userNames", userName);
+        });
+        var user = document.getElementById("userAccount").value
+        var password = document.getElementById("password").value
+        var remindAccount = document.getElementById("remind-account")
+        var remindPassword = document.getElementById("remind-password")
+        if (!user && !password) {
+            remindAccount.innerHTML = '请输入账号'
+            remindPassword.innerHTML = '请输入密码'
+            return false
+        } else if (!user) {
+            remindAccount.innerHTML = '请输入账号'
+            return false
+        } else if (!password) {
+            remindPassword.innerHTML = '请输入密码'
+            return false
+        }
+    }
+    function onBlurAccount() {
+        var user = document.getElementById("userAccount").value
+        var remindAccount = document.getElementById("remind-account")
+        if (!user) {
+            remindAccount.innerHTML = '请输入账号'
+        } else {
+            remindAccount.innerHTML = ''
+        }
+    }
+    function onBlurPass() {
+        var password = document.getElementById("password").value
+        var remindPassword = document.getElementById("remind-password")
+        if (!password) {
+            remindPassword.innerHTML = '请输入密码'
+        } else {
+            remindPassword.innerHTML = ''
+        }
+    }
+    // function onLogin() {
+    //   var userName = document.getElementById('userName').value
+    //   window.addEventListener("beforeunload", () => {
+    //     sessionStorage.setItem("userName", userName);
+    //   });
+    //   // var userName = document.getElementById('userName')
+    //   // console.log(userName, 'userName')
+    // }
+
+</script>
+</body>
+
+</html>
